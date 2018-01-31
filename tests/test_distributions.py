@@ -1,6 +1,6 @@
-from pbchain.distribution import Uniform
+from pbchain.distributions.uniform import Uniform
 
-def test_answer():
+def test_uniform_distribution():
     uniform = Uniform(1.0, 2.0)
-    print(uniform)
-    assert (1 + 1) == 2
+    assert uniform.a == 1.0
+    assert uniform.b == 2.0
