@@ -4,7 +4,6 @@ python:
 # command to install dependencies
 install:
   - python setup.py install
-  - pip install -e .
 # script
 script:
   - pytest
