@@ -1,3 +1,7 @@
+"""
+setup script settings
+"""
+
 from setuptools import setup
 
 setup(
@@ -10,5 +14,7 @@ setup(
     license='MIT License',
     install_requires=[
         'numpy>=1.9.0',
+        'scipy>=0.12.0',
+        'pytest',
     ],
 )

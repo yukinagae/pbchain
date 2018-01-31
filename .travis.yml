@@ -5,6 +5,6 @@ python:
 # command to install dependencies
 install:
   - python setup.py install
-# TODO: dummy script
+# script
 script:
-  - python --version
+  - pytest
