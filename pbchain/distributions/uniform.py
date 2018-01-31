@@ -2,6 +2,8 @@
 Uniform distribution
 """
 
+from scipy.stats import uniform
+
 
 class Uniform():
     """
@@ -11,4 +13,4 @@ class Uniform():
     def __init__(self, a, b):
         """
         """
-        pass
+        self.dist = uniform(a, b)
