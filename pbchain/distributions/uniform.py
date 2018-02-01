@@ -19,7 +19,8 @@ class Uniform():
 
     def sample(self):
         """sampling"""
-        return uniform.rvs(loc=self.a, scale=self.b - self.a)
+        import random
+        return self.a + random.random() * (self.b - self.b)
 
     def log_pdf(self, x):
         """log probability distribution function"""
