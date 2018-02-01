@@ -1,10 +1,21 @@
+"""
+distributions test
+"""
+
 from pbchain.distributions.uniform import Uniform
 
 
 def test_uniform_distribution():
-    uniform = Uniform(1.0, 2.0)
-    assert uniform.a == 1.0
-    assert uniform.b == 2.0
-    for i in range(0, 10):
+    """uniform distribution test"""
+    low = 1.0
+    high = 2.0
+    uniform = Uniform(low, high)
+    assert uniform.low == low
+    assert uniform.high == high
+    for _ in range(0, 10):
         sample = uniform.sample()
-        assert 1.0 <= sample <= 2.0
+        assert low <= sample <= high
+        mean = uniform.mean()
+        assert mean == (low + high) / 2
+        var = uniform.var()
+        assert var == (low - high) ** 2 / 12

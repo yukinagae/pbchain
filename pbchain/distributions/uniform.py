@@ -14,14 +14,17 @@ class Uniform():
         """
         initialize
         """
-        self.a = a
-        self.b = b
+        self.low = a
+        self.high = b
+
+    def mean(self):
+        """mean"""
+        return uniform.mean(loc=self.low, scale=self.high - self.low)
+
+    def var(self):
+        """variance"""
+        return uniform.var(loc=self.low, scale=self.high - self.low)
 
     def sample(self):
-        """
-        sample method
-        """
-        return uniform.rvs(
-            loc=self.a,
-            scale=self.b - self.a
-            )
+        """sampling"""
+        return uniform.rvs(loc=self.low, scale=self.high - self.low)
