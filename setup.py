@@ -15,6 +15,9 @@ setup(
     install_requires=[
         'numpy>=1.9.0',
         'scipy>=0.12.0',
+        'six>=1.9.0',
+        'chainer>=3.0.0',
+        # test
         'pytest',
     ],
 )

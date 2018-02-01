@@ -2,7 +2,10 @@
 Uniform distribution
 """
 
-from scipy.stats import uniform
+
+from chainer import Variable
+import chainer.functions as F
+import numpy as np
 
 
 class Uniform():
@@ -19,15 +22,14 @@ class Uniform():
 
     def sample(self):
         """sampling"""
-        import random
-        return self.a + random.random() * (self.b - self.b)
+        eps = Variable(np.random.rand(1).astype(np.float32))
+        return self.a + eps * (self.b - self.a)
 
     def log_pdf(self, x):
         """log probability distribution function"""
-        from math import log
-        if x < self.a or x > self.b:
-            return log(0.0)
-        return log(1.0 / (self.b - self.a))
+        if x.data[0] < self.a.data[0] or x.data[0] > self.b.data[0]:
+            return F.log(0.0)
+        return F.log(1.0 / (self.b - self.a))
 
     def analytic_mean(self):
         """mean"""
