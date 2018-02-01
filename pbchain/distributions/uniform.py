@@ -14,17 +14,24 @@ class Uniform():
         """
         initialize
         """
-        self.low = a
-        self.high = b
-
-    def mean(self):
-        """mean"""
-        return uniform.mean(loc=self.low, scale=self.high - self.low)
-
-    def var(self):
-        """variance"""
-        return uniform.var(loc=self.low, scale=self.high - self.low)
+        self.a = a
+        self.b = b
 
     def sample(self):
         """sampling"""
-        return uniform.rvs(loc=self.low, scale=self.high - self.low)
+        return uniform.rvs(loc=self.a, scale=self.b - self.a)
+
+    def log_pdf(self, x):
+        """log probability distribution function"""
+        from math import log
+        if x < self.a or x > self.b:
+            return log(0.0)
+        return log(1.0 / (self.b - self.a))
+
+    def analytic_mean(self):
+        """mean"""
+        return 0.5 * (self.a + self.b)
+
+    def analytic_var(self):
+        """variance"""
+        return (self.b - self.a) ** 2 / 12
