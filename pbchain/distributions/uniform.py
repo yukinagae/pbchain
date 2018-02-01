@@ -10,14 +10,18 @@ class Uniform():
     Uniform distribution
     """
 
-    def __init__(self, a, b, *args, **kwargs):
+    def __init__(self, a, b):
         """
+        initialize
         """
         self.a = a
         self.b = b
 
     def sample(self):
+        """
+        sample method
+        """
         return uniform.rvs(
-                loc=self.a,
-                scale=self.b - self.a
-                )
+            loc=self.a,
+            scale=self.b - self.a
+            )
