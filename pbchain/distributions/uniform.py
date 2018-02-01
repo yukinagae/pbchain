@@ -3,7 +3,6 @@ Uniform distribution
 """
 
 
-from chainer import Variable
 import chainer.functions as F
 import numpy as np
 
@@ -22,7 +21,7 @@ class Uniform():
 
     def sample(self):
         """sampling"""
-        eps = Variable(np.random.rand(1).astype(np.float32))
+        eps = np.random.ranf(1)
         return self.a + eps * (self.b - self.a)
 
     def log_pdf(self, x):
