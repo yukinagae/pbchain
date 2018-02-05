@@ -12,12 +12,16 @@ class Uniform():
     Uniform distribution
     """
 
-    def __init__(self, a, b):
+    def __init__(self, name, a, b):
         """
         initialize
         """
+        self.name = name
         self.a = a
         self.b = b
+
+    def __str__(self):
+        return "Uniform(\"{}\",{},{})".format(self.name, self.a, self.b)
 
     def sample(self):
         """sampling"""

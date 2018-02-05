@@ -11,13 +11,6 @@ from pbchain.distributions.uniform import Uniform
 from pbchain.distributions.normal import Normal
 
 
-def test_normalnormal_run():
-    x_data = np.array([0.0] * 50, dtype=np.float32)
-    print(x_data)
-    mu = Normal("mu", 0.0, 1.0)
-    x = Normal("x", mu, 1.0)
-    print(x)
-
 # def test_uniform_distribution():
 #     """uniform distribution test"""
 #     a = Variable(np.array([1.0]).astype(np.float32))
