@@ -12,12 +12,16 @@ class Normal():
     Normal distribution
     """
 
-    def __init__(self, mu, sigma):
+    def __init__(self, name, mu, sigma):
         """
         initialize
         """
+        self.name = name
         self.mu = mu
         self.sigma = sigma
+
+    def __str__(self):
+        return "Normal(\"{}\",{},{})".format(self.name, self.mu, self.sigma)
 
     def sample(self):
         """sampling"""
