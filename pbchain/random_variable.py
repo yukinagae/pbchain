@@ -1,10 +1,7 @@
 class RandomVariable(object):
 
     def __init__(self, *args, **kwargs):
-        self.value = self.sample(self)
-
-    def value(self):
-        return self.value
+        pass
 
     def sample(self):
         raise NotImplementedError()
@@ -26,5 +23,5 @@ class RandomVariable(object):
         raise NotImplementedError()
 
     def __add__(self, rhs):
-        value = self.value()
-        return value + rhs.value()
+        # return self.value + rhs.value
+        pass

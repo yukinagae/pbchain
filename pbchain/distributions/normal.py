@@ -18,6 +18,7 @@ class Normal(RandomVariable):
         """
         initialize
         """
+        self.value = self.sample()
         self.name = name
         self.mu = mu
         self.sigma = sigma
@@ -28,7 +29,11 @@ class Normal(RandomVariable):
     def sample(self):
         """sampling"""
         eps = np.random.ranf(1)
-        return self.mu + eps * self.sigma
+        print(type(self))
+        # if isinstance(self.mu, Normal):
+            # return self.mu.mu + eps * self.sigma
+        # return self.mu + eps * self.sigma
+        pass
 
     def log_pdf(self, x):
         """log probability distribution function"""
@@ -41,3 +46,4 @@ class Normal(RandomVariable):
     def analytic_var(self):
         """variance"""
         return self.sigma ** 2
+
