@@ -6,8 +6,10 @@ Normal distribution
 import chainer.functions as F
 import numpy as np
 
+from pbchain.random_variable import RandomVariable
 
-class Normal():
+
+class Normal(RandomVariable):
     """
     Normal distribution
     """

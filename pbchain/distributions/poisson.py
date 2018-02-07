@@ -6,8 +6,10 @@ Poisson distribution
 import chainer.functions as F
 import numpy as np
 
+from pbchain.random_variable import RandomVariable
 
-class Poisson():
+
+class Poisson(RandomVariable):
     """
     Poisson distribution
     """
