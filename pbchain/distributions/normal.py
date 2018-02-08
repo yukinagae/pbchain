@@ -3,25 +3,25 @@ Normal distribution
 """
 
 
+from chainer import Variable
 import chainer.functions as F
 import numpy as np
 
 from pbchain.random_variable import RandomVariable
 
 
-class Normal(RandomVariable):
+class Normal(RandomVariable, Variable):
     """
     Normal distribution
     """
 
-    def __init__(self, name, mu, sigma):
+    def __init__(self, mu, sigma, *args, **kwargs):
         """
         initialize
         """
-        self.value = self.sample()
-        self.name = name
         self.mu = mu
         self.sigma = sigma
+        super(Normal, self).__init__(*args, **kwargs)
 
     def __str__(self):
         return "Normal(\"{}\",{},{})".format(self.name, self.mu, self.sigma)
@@ -29,11 +29,7 @@ class Normal(RandomVariable):
     def sample(self):
         """sampling"""
         eps = np.random.ranf(1)
-        print(type(self))
-        # if isinstance(self.mu, Normal):
-            # return self.mu.mu + eps * self.sigma
-        # return self.mu + eps * self.sigma
-        pass
+        return self.mu + eps * self.sigma
 
     def log_pdf(self, x):
         """log probability distribution function"""
@@ -46,4 +42,3 @@ class Normal(RandomVariable):
     def analytic_var(self):
         """variance"""
         return self.sigma ** 2
-
