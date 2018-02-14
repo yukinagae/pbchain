@@ -28,12 +28,22 @@ class Normal(RandomVariable, Variable):
 
     def sample(self):
         """sampling"""
-        eps = np.random.ranf(1)
-        return self.mu + eps * self.sigma
+        eps = np.random.random_sample(self.sample_shape)
+        print("eps: {}".format(eps))
+        print("mu: {}".format(self.mu))
+        if isinstance(self.mu, Variable):
+            print("mu shape: {}".format(self.mu.shape))
+            print("mu data: {}".format(self.mu.array))
+        print("sigma: {}".format(self.sigma))
+        s = self.mu + eps * self.sigma
+        print("s: {}".format(s))
+        if isinstance(s, Variable):
+            print("s shape: {}".format(s.shape))
+        return s
 
     def log_pdf(self, x):
         """log probability distribution function"""
-        return -1 * (F.log(self.sigma) + 0.5 * np.log(2.0 * np.pi) + 0.5 * ((x - self.mu) / self.sigma) ** 2)
+        return -1*(F.log(self.sigma)+0.5*np.log(2.0*np.pi)+0.5*((x-self.mu)/self.sigma)**2)
 
     def analytic_mean(self):
         """mean"""
