@@ -3,31 +3,31 @@ Uniform distribution
 """
 
 
+from chainer import Variable
 import chainer.functions as F
 import numpy as np
 
 from pbchain.random_variable import RandomVariable
 
 
-class Uniform(RandomVariable):
+class Uniform(RandomVariable, Variable):
     """
     Uniform distribution
     """
 
-    def __init__(self, name, a, b):
+    def __init__(self, a, b, *args, **kwargs):
         """
-        initialize
+        Args:
+            a (TODO: type): lower
+            b (TODO: type): higher
         """
-        self.name = name
         self.a = a
         self.b = b
-
-    def __str__(self):
-        return "Uniform(\"{}\",{},{})".format(self.name, self.a, self.b)
+        super(Uniform, self).__init__(*args, **kwargs)
 
     def sample(self):
         """sampling"""
-        eps = np.random.ranf(1)
+        eps = np.random.random_sample()
         return self.a + eps * (self.b - self.a)
 
     def log_pdf(self, x):

@@ -17,28 +17,26 @@ class Normal(RandomVariable, Variable):
 
     def __init__(self, mu, sigma, *args, **kwargs):
         """
-        initialize
+        Args:
+            mu (TODO: type): mu
+            sigma (TODO: type): sigma
         """
         self.mu = mu
         self.sigma = sigma
         super(Normal, self).__init__(*args, **kwargs)
 
-    def __str__(self):
-        return "Normal(\"{}\",{},{})".format(self.name, self.mu, self.sigma)
-
     def sample(self):
-        """sampling"""
         eps = np.random.random_sample()
         return self.mu + eps * self.sigma
 
     def log_pdf(self, x):
-        """log probability distribution function"""
-        return -1 * (F.log(self.sigma) + 0.5 * np.log(2.0 * np.pi) + 0.5 * ((x - self.mu) / self.sigma) ** 2)
+        return -1 * (
+            F.log(self.sigma) + 0.5 * np.log(2.0 * np.pi) +
+            0.5 * ((x - self.mu) / self.sigma) ** 2
+        )
 
     def mean(self):
-        """mean"""
         return self.mu
 
     def var(self):
-        """variance"""
         return self.sigma ** 2

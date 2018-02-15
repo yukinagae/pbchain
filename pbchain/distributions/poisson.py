@@ -3,35 +3,34 @@ Poisson distribution
 """
 
 
+from chainer import Variable
 import chainer.functions as F
 import numpy as np
 
 from pbchain.random_variable import RandomVariable
 
 
-class Poisson(RandomVariable):
+class Poisson(RandomVariable, Variable):
     """
     Poisson distribution
     """
 
-    def __init__(self, lam):
+    def __init__(self, lam, *args, **kwargs):
         """
-        initialize
+        Args:
+            lam (TODO: type): lam
         """
         self.lam = lam
+        super(Poisson, self).__init__(*args, **kwargs)
 
     def sample(self):
-        """sampling"""
         pass
 
     def log_pdf(self, x):
-        """log probability distribution function"""
         pass
 
     def mean(self):
-        """mean"""
         return self.lam
 
     def var(self):
-        """variance"""
         return self.lam

@@ -7,6 +7,7 @@ class RandomVariable(object):
         #
 
         name = kwargs.get('name', type(self).__name__)
+
         # TODO: name should be unique in a computational graph
         kwargs['name'] = name
 
@@ -32,15 +33,34 @@ class RandomVariable(object):
             self.data = self.sample()
 
     def sample(self):
+        """sampling"""
         raise NotImplementedError()
 
     def __str__(self):
-        raise NotImplementedError()
+        return "{}(\"{}\"{}{})".format(
+            type(self).__name__,
+            self.name,
+            ", shape={}".format(self.shape),
+            ", dtype={}".format(self.dtype.name) if self.dtype else "",
+        )
 
     def __repr__(self):
+        return "<pb.RandomVariable '{}' shape={} dtype={}>".format(
+            self.name,
+            self.shape,
+            self.dtype.name,
+        )
+
+    def log_pdf(self, x):
+        """log probability distribution function"""
         raise NotImplementedError()
 
-    def eval(self):
+    def mean(self):
+        """mean"""
+        raise NotImplementedError()
+
+    def var(self):
+        """variance"""
         raise NotImplementedError()
 
     def get_children(self):
