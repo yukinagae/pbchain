@@ -28,10 +28,10 @@ class Poisson(RandomVariable):
         """log probability distribution function"""
         pass
 
-    def analytic_mean(self):
+    def mean(self):
         """mean"""
         return self.lam
 
-    def analytic_var(self):
+    def var(self):
         """variance"""
         return self.lam

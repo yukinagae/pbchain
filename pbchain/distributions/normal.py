@@ -35,10 +35,10 @@ class Normal(RandomVariable, Variable):
         """log probability distribution function"""
         return -1 * (F.log(self.sigma) + 0.5 * np.log(2.0 * np.pi) + 0.5 * ((x - self.mu) / self.sigma) ** 2)
 
-    def analytic_mean(self):
+    def mean(self):
         """mean"""
         return self.mu
 
-    def analytic_var(self):
+    def var(self):
         """variance"""
         return self.sigma ** 2

@@ -36,10 +36,10 @@ class Uniform(RandomVariable):
             return F.log(0.0)
         return F.log(1.0 / (self.b - self.a))
 
-    def analytic_mean(self):
+    def mean(self):
         """mean"""
         return 0.5 * (self.a + self.b)
 
-    def analytic_var(self):
+    def var(self):
         """variance"""
         return (self.b - self.a) ** 2 / 12
