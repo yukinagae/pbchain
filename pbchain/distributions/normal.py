@@ -3,6 +3,7 @@ Normal distribution
 """
 
 
+import numpy as np
 from chainer import Variable
 from scipy.stats import norm
 
@@ -36,7 +37,9 @@ class Normal(RandomVariable, Variable):
         return self._sigma
 
     def sample(self, *args, **kwargs):
-        return norm.rvs(loc=self.mu.data, scale=self.sigma.data, size=self.mu.shape, random_state=None)
+        eps = np.random.random_sample(self.mu.shape).astype(self.mu.dtype)
+        return self.mu + eps * self.sigma
+        # return norm.rvs(loc=self.mu.data, scale=self.sigma.data, size=self.mu.shape, random_state=None)
 
     def log_pdf(self, x, *args, **kwargs):
         if isinstance(x, Variable):

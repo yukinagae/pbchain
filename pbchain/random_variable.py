@@ -77,20 +77,29 @@ class RandomVariable(object):
 
     def get_children(self):
         """get children nodes"""
-        pass  # TODO: should be implemented
+        if self.creator is not None:
+            return [child().get_variable() for child in self.creator.outputs]
+        else:
+            return [child().get_variable() for child in self.data.creator.outputs]
 
     def get_parents(self):
         """get parent nodes"""
-        pass  # TODO: should be implemented
+        if self.creator is not None:
+            return [parent.get_variable() for parent in self.creator.inputs]
+        else:
+            return [parent.get_variable() for parent in self.data.creator.inputs]
+
+    def __hash__(self):
+        return id(self)
+
+    def __eq__(self, other):
+        return id(self) == id(other)
 
     def __lt__(self, other):
         raise TypeError("")
 
     def __le__(self, other):
         raise TypeError("")
-
-    def __eq__(self, other):
-        return id(self) == id(other)
 
     def __ne__(self, other):
         raise TypeError("")
