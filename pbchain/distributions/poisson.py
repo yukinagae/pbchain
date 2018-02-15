@@ -21,14 +21,14 @@ class Poisson(RandomVariable, Variable):
         self.lam = lam
         super(Poisson, self).__init__(*args, **kwargs)
 
-    def sample(self):
+    def sample(self, *args, **kwargs):
         pass
 
-    def log_pdf(self, x):
+    def log_pdf(self, x, *args, **kwargs):
         pass
 
-    def mean(self):
+    def mean(self, *args, **kwargs):
         return self.lam
 
-    def var(self):
+    def var(self, *args, **kwargs):
         return self.lam
