@@ -2,8 +2,6 @@
 random variable test
 """
 
-import pytest
-
 import numpy as np
 from pbchain.distributions.normal import Normal
 
