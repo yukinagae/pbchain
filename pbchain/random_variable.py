@@ -1,3 +1,8 @@
+from abc import abstractmethod
+# from six import add_metaclass
+
+
+# @add_metaclass(ABCMeta)
 class RandomVariable(object):
     """
     RandomVariable
@@ -35,7 +40,8 @@ class RandomVariable(object):
         else:
             self.data = self.sample()
 
-    def sample(self):
+    @abstractmethod
+    def sample(self, *args, **kwargs):
         """sampling"""
         raise NotImplementedError()
 
@@ -54,15 +60,18 @@ class RandomVariable(object):
             self.dtype.name,
         )
 
-    def log_pdf(self, x):
+    @abstractmethod
+    def log_pdf(self, x, *args, **kwargs):
         """log probability distribution function"""
         raise NotImplementedError()
 
-    def mean(self):
+    @abstractmethod
+    def mean(self, *args, **kwargs):
         """mean"""
         raise NotImplementedError()
 
-    def var(self):
+    @abstractmethod
+    def var(self, *args, **kwargs):
         """variance"""
         raise NotImplementedError()
 
