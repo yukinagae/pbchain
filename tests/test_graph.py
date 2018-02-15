@@ -2,9 +2,9 @@
 graph test
 """
 
-import pytest
+# import pytest
 
-from pbchain.distributions.normal import Normal
+# from pbchain.distributions.normal import Normal
 
 
 def test_graph():

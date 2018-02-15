@@ -2,10 +2,10 @@
 inferences test
 """
 
-import pytest
+# import pytest
 
 from chainer import Variable
-import numpy as np
+# import numpy as np
 
 from pbchain.distributions.uniform import Uniform
 from pbchain.distributions.normal import Normal
