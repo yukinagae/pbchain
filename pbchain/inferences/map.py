@@ -2,6 +2,7 @@
 MAP inference
 """
 
+
 class MAP():
 
     def __init__(self, vars=None, data=None):
