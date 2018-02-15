@@ -2,28 +2,34 @@ class RandomVariable(object):
 
     def __init__(self, *args, **kwargs):
 
+        #
+        # deal with arguments
+        #
+
         name = kwargs.get('name', type(self).__name__)
-        sample_shape = kwargs.pop('sample_shape', ())
+        # TODO: name should be unique in a computational graph
+        kwargs['name'] = name
+
         data = kwargs.pop('data', None)
 
         self._args = args
         self._kwargs = kwargs.copy()
 
-        if sample_shape != ():
-            self._kwargs['sample_shape'] = sample_shape
-
         if data is not None:
             self._kwargs['data'] = data
 
+        #
+        # `__init__()` of Variable class
+        #
         super(RandomVariable, self).__init__(*args, **kwargs)
 
-        self.sample_shape = sample_shape
-
+        #
+        # override Variable class values for child class
+        #
         if data is not None:
-            self._data = data
+            self.data = data  # TODO: convert data to Variable
         else:
-            print("name: {} start sample".format(name))
-            self._data = self.sample()
+            self.data = self.sample()
 
     def sample(self):
         raise NotImplementedError()
