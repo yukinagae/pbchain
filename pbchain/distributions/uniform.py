@@ -44,7 +44,7 @@ class Uniform(RandomVariable, Variable):
         return norm.logpdf(x, loc=self.a.data, scale=self.b.data-self.a.data)
 
     def mean(self, *args, **kwargs):
-        return 0.5 * (self.a + self.b)
+        return uniform.mean(loc=self.a.data, scale=self.b.data-self.a.data)
 
     def var(self, *args, **kwargs):
-        return (self.b - self.a) ** 2 / 12
+        return uniform.var(loc=self.a.data, scale=self.b.data-self.a.data)
