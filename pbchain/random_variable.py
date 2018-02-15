@@ -1,8 +1,8 @@
-from abc import abstractmethod
-# from six import add_metaclass
+from abc import abstractmethod, ABCMeta
+from six import add_metaclass
 
 
-# @add_metaclass(ABCMeta)
+@add_metaclass(ABCMeta)
 class RandomVariable(object):
     """
     RandomVariable
