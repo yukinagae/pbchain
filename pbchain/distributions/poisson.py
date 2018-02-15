@@ -4,8 +4,6 @@ Poisson distribution
 
 
 from chainer import Variable
-import chainer.functions as F
-import numpy as np
 
 from pbchain.random_variable import RandomVariable
 
