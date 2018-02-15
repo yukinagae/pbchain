@@ -4,8 +4,6 @@ Normal distribution
 
 
 from chainer import Variable
-import chainer.functions as F
-import numpy as np
 from scipy.stats import norm
 
 from pbchain.random_variable import RandomVariable

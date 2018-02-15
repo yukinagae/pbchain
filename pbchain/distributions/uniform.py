@@ -4,8 +4,6 @@ Uniform distribution
 
 
 from chainer import Variable
-import chainer.functions as F
-import numpy as np
 from scipy.stats import uniform
 
 from pbchain.random_variable import RandomVariable
