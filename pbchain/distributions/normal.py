@@ -21,12 +21,20 @@ class Normal(RandomVariable, Variable):
             mu (TODO: type): mu
             sigma (TODO: type): sigma
         """
-        self.mu = mu
-        self.sigma = sigma
+        self._mu = mu
+        self._sigma = sigma
 
-        # TODO: shape check => mu, sigma
+        # TODO: shape check
 
         super(Normal, self).__init__(*args, **kwargs)
+
+    @property
+    def mu(self):
+        return self._mu
+
+    @property
+    def sigma(self):
+        return self._sigma
 
     def sample(self, *args, **kwargs):
         eps = np.random.random_sample(self.mu.shape).astype(self.mu.dtype)

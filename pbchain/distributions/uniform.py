@@ -21,12 +21,23 @@ class Uniform(RandomVariable, Variable):
             a (TODO: type): lower
             b (TODO: type): higher
         """
-        self.a = a
-        self.b = b
+        self._a = a
+        self._b = b
+
+        # TODO: shape check
+
         super(Uniform, self).__init__(*args, **kwargs)
 
+    @property
+    def a(self):
+        return self._a
+
+    @property
+    def b(self):
+        return self._b
+
     def sample(self, *args, **kwargs):
-        eps = np.random.random_sample()
+        eps = np.random.random_sample(self.a.shape)
         return self.a + eps * (self.b - self.a)
 
     def log_pdf(self, x, *args, **kwargs):
