@@ -1,4 +1,7 @@
 class RandomVariable(object):
+    """
+    RandomVariable
+    """
 
     def __init__(self, *args, **kwargs):
 
@@ -64,7 +67,33 @@ class RandomVariable(object):
         raise NotImplementedError()
 
     def get_children(self):
-        raise NotImplementedError()
+        """get children nodes"""
+        pass  # TODO: should be implemented
 
     def get_parents(self):
-        raise NotImplementedError()
+        """get parent nodes"""
+        pass  # TODO: should be implemented
+
+    def __lt__(self, other):
+        raise TypeError("")
+
+    def __le__(self, other):
+        raise TypeError("")
+
+    def __eq__(self, other):
+        return id(self) == id(other)
+
+    def __ne__(self, other):
+        raise TypeError("")
+
+    def __gt__(self, other):
+        raise TypeError("")
+
+    def __ge__(self, other):
+        raise TypeError("")
+
+    def __nonzero__(self):
+        raise TypeError("")
+
+    def __bool__(self):
+        raise TypeError("")
