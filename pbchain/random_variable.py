@@ -15,12 +15,11 @@ class RandomVariable(object):
     def __init__(self, *args, **kwargs):
 
         #
-        # deal with arguments
+        # handle arguments
         #
 
-        name = kwargs.get('name', type(self).__name__)
-
         # TODO: name should be unique in a computational graph
+        name = kwargs.get('name', type(self).__name__)
         kwargs['name'] = name
 
         self._args = args
