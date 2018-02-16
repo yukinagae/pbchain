@@ -1,3 +1,7 @@
+"""
+RandomVariable module
+"""
+
 from abc import abstractmethod, ABCMeta
 from six import add_metaclass
 
@@ -79,15 +83,13 @@ class RandomVariable(object):
         """get children nodes"""
         if self.creator is not None:
             return [o().get_variable() for o in self.creator.outputs]
-        else:
-            return [o().get_variable() for o in self.data.creator.outputs]
+        return [o().get_variable() for o in self.data.creator.outputs]
 
     def get_parents(self):
         """get parent nodes"""
         if self.creator is not None:
             return [i.get_variable() for i in self.creator.inputs]
-        else:
-            return [i.get_variable() for i in self.data.creator.inputs]
+        return [i.get_variable() for i in self.data.creator.inputs]
 
     def __hash__(self):
         return id(self)

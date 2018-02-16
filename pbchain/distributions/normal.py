@@ -30,10 +30,12 @@ class Normal(RandomVariable, Variable):
 
     @property
     def mu(self):
+        """mu property"""
         return self._mu
 
     @property
     def sigma(self):
+        """sigma property"""
         return self._sigma
 
     def sample(self, *args, **kwargs):

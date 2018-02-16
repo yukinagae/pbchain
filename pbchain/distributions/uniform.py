@@ -29,32 +29,34 @@ class Uniform(RandomVariable, Variable):
 
     @property
     def a(self):
+        """lower property"""
         return self._a
 
     @property
     def b(self):
+        """higher property"""
         return self._b
 
     def sample(self, *args, **kwargs):
         return uniform.rvs(
-                loc=self.a.data,
-                scale=self.b.data-self.a.data,
-                size=self.a.shape,
-                random_state=None,
-            )
+            loc=self.a.data,
+            scale=self.b.data-self.a.data,
+            size=self.a.shape,
+            random_state=None,
+        )
 
     def log_pdf(self, x, *args, **kwargs):
         if isinstance(x, Variable):
             return uniform.logpdf(
-                    x.data,
-                    loc=self.a.data,
-                    scale=self.b.data-self.a.data,
-                )
-        return uniform.logpdf(
-                x,
+                x.data,
                 loc=self.a.data,
                 scale=self.b.data-self.a.data,
             )
+        return uniform.logpdf(
+            x,
+            loc=self.a.data,
+            scale=self.b.data-self.a.data,
+        )
 
     def mean(self, *args, **kwargs):
         return uniform.mean(loc=self.a.data, scale=self.b.data-self.a.data)
