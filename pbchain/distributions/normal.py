@@ -5,7 +5,7 @@ Normal distribution
 
 import numpy as np
 from chainer import Variable
-from scipy.stats import norm
+import chainer.functions as F
 
 from pbchain.random_variable import RandomVariable
 
@@ -41,20 +41,15 @@ class Normal(RandomVariable, Variable):
     def sample(self, *args, **kwargs):
         eps = np.random.random_sample(self.mu.shape).astype(self.mu.dtype)
         return self.mu + eps * self.sigma
-        # return norm.rvs(
-        #     loc=self.mu.data,
-        #     scale=self.sigma.data,
-        #     size=self.mu.shape,
-        #     random_state=None,
-        # )
 
     def log_pdf(self, x, *args, **kwargs):
-        if isinstance(x, Variable):
-            return norm.logpdf(x.data, loc=self.mu.data, scale=self.sigma.data)
-        return norm.logpdf(x, loc=self.mu.data, scale=self.sigma.data)
+        return -1 * (
+            F.log(self.sigma) + 0.5 * np.log(2.0 * np.pi) +
+            0.5 * ((x - self.mu) / self.sigma) ** 2
+        )
 
     def mean(self, *args, **kwargs):
-        return norm.mean(loc=self.mu, scale=self.sigma)
+        return self.mu
 
     def var(self, *args, **kwargs):
-        return norm.var(loc=self.mu, scale=self.sigma)
+        return self.sigma ** 2

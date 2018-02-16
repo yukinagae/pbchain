@@ -4,7 +4,8 @@ Uniform distribution
 
 
 from chainer import Variable
-from scipy.stats import uniform
+import chainer.functions as F
+import numpy as np
 
 from pbchain.random_variable import RandomVariable
 
@@ -38,28 +39,16 @@ class Uniform(RandomVariable, Variable):
         return self._b
 
     def sample(self, *args, **kwargs):
-        return uniform.rvs(
-            loc=self.a.data,
-            scale=self.b.data-self.a.data,
-            size=self.a.shape,
-            random_state=None,
-        )
+        eps = np.random.random_sample(self.a.shape)
+        return self.a + eps * (self.b - self.a)
 
     def log_pdf(self, x, *args, **kwargs):
-        if isinstance(x, Variable):
-            return uniform.logpdf(
-                x.data,
-                loc=self.a.data,
-                scale=self.b.data-self.a.data,
-            )
-        return uniform.logpdf(
-            x,
-            loc=self.a.data,
-            scale=self.b.data-self.a.data,
-        )
+        if x.data[0] < self.a.data[0] or x.data[0] > self.b.data[0]:
+            return F.log(0.0)
+        return F.log(1.0 / (self.b - self.a))
 
     def mean(self, *args, **kwargs):
-        return uniform.mean(loc=self.a.data, scale=self.b.data-self.a.data)
+        return 0.5 * (self.a + self.b)
 
     def var(self, *args, **kwargs):
-        return uniform.var(loc=self.a.data, scale=self.b.data-self.a.data)
+        return (self.b - self.a) ** 2 / 12
