@@ -23,13 +23,8 @@ class RandomVariable(object):
         # TODO: name should be unique in a computational graph
         kwargs['name'] = name
 
-        data = kwargs.pop('data', None)
-
         self._args = args
         self._kwargs = kwargs.copy()
-
-        if data is not None:
-            self._kwargs['data'] = data
 
         #
         # `__init__()` of Variable class
@@ -39,10 +34,7 @@ class RandomVariable(object):
         #
         # override Variable class values for child class
         #
-        if data is not None:
-            self.data = data  # TODO: convert data to Variable
-        else:
-            self.data = self.sample()
+        self.data = self.sample()
 
     @abstractmethod
     def sample(self, *args, **kwargs):
