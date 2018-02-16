@@ -39,7 +39,12 @@ class Normal(RandomVariable, Variable):
     def sample(self, *args, **kwargs):
         eps = np.random.random_sample(self.mu.shape).astype(self.mu.dtype)
         return self.mu + eps * self.sigma
-        # return norm.rvs(loc=self.mu.data, scale=self.sigma.data, size=self.mu.shape, random_state=None)
+        # return norm.rvs(
+        #     loc=self.mu.data,
+        #     scale=self.sigma.data,
+        #     size=self.mu.shape,
+        #     random_state=None,
+        # )
 
     def log_pdf(self, x, *args, **kwargs):
         if isinstance(x, Variable):

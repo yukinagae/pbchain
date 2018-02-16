@@ -78,16 +78,16 @@ class RandomVariable(object):
     def get_children(self):
         """get children nodes"""
         if self.creator is not None:
-            return [child().get_variable() for child in self.creator.outputs]
+            return [o().get_variable() for o in self.creator.outputs]
         else:
-            return [child().get_variable() for child in self.data.creator.outputs]
+            return [o().get_variable() for o in self.data.creator.outputs]
 
     def get_parents(self):
         """get parent nodes"""
         if self.creator is not None:
-            return [parent.get_variable() for parent in self.creator.inputs]
+            return [i.get_variable() for i in self.creator.inputs]
         else:
-            return [parent.get_variable() for parent in self.data.creator.inputs]
+            return [i.get_variable() for i in self.data.creator.inputs]
 
     def __hash__(self):
         return id(self)
