@@ -35,11 +35,6 @@ class RandomVariable(object):
         #
         self.data = self.sample()
 
-    @abstractmethod
-    def sample(self, *args, **kwargs):
-        """sampling"""
-        raise NotImplementedError()
-
     def __str__(self):
         return "{}(\"{}\"{}{})".format(
             type(self).__name__,
@@ -54,6 +49,11 @@ class RandomVariable(object):
             self.shape,
             self.dtype.name,
         )
+
+    @abstractmethod
+    def sample(self, *args, **kwargs):
+        """sampling"""
+        raise NotImplementedError()
 
     @abstractmethod
     def log_pdf(self, x, *args, **kwargs):
